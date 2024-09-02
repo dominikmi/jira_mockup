@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  jira-api-mockup:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      FLASK_APP: jira-api-mock.py
+    command: ["gunicorn", "--bind", "0.0.0.0:5000", "jira-api-mock:app"]
